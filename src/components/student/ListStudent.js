@@ -4,6 +4,9 @@ export default function ListStudent(props) {
   const handleEdit = (stuEdit) => {
     props.handleEdit(stuEdit);
   };
+  const handleDetail = (stuDetail) => {
+    props.handleDetail(stuDetail);
+  };
   return (
     <div className="card-body">
       <h3 className="card-title">Danh sách sinh viên</h3>
@@ -32,6 +35,7 @@ export default function ListStudent(props) {
                     <button
                       type="button"
                       className="btn btn-danger btn-icon-text"
+                      onClick={() => handleDetail(stu)}
                     >
                       Xem
                     </button>

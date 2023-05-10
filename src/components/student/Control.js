@@ -4,6 +4,15 @@ export default function Control(props) {
   const handleShowForm = () => {
     props.setShow(true);
     props.setAction("ADD");
+    props.setStudentInfo({
+      id: "",
+      name: "",
+      age: 0,
+      sex: "Nam",
+      birthday: "",
+      place: "",
+      address: "",
+    });
   };
   return (
     <div className="card-header">

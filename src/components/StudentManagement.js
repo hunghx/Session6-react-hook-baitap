@@ -29,18 +29,35 @@ export default function StudentManagement() {
     setStudentInfo({ ...stuEdit });
     setAction("UPDATE");
   };
+  const handleDetail = (stuDetail) => {
+    setShow(true);
+    setStudentInfo({ ...stuDetail });
+    setAction("CANCEL");
+  };
+  const handleClose = () => {
+    setShow(false);
+  };
   const handleUpdate = (stuUp) => {
     // Xử lí update
+    let updateList = list.map((stu) => (stu.id === stuUp.id ? stuUp : stu));
+    setList(updateList);
+    localStorage.setItem("list-student", JSON.stringify(updateList));
+    setShow(false);
   };
   return (
     <div className="row">
       <div className="col-lg-7 grid-margin stretch-card">
         <div className="card">
           {/* START CONTROL */}
-          <Control setShow={setShow} setAction={setAction} />
+          <Control
+            setStudentInfo={setStudentInfo}
+            setShow={setShow}
+            setAction={setAction}
+          />
           {/* END CONTROL */}
           {/* START LIST STUDENT */}
           <ListStudent
+            handleDetail={handleDetail}
             handleEdit={handleEdit}
             handleDelete={handleDelete}
             list={list}
@@ -50,7 +67,13 @@ export default function StudentManagement() {
       </div>
       {/* START FORM SINH VIEN */}
       {show ? (
-        <Form studentInfo={studentInfo} handleAdd={handleAdd} action={action} />
+        <Form
+          handleClose={handleClose}
+          handleUpdate={handleUpdate}
+          studentInfo={studentInfo}
+          handleAdd={handleAdd}
+          action={action}
+        />
       ) : (
         ""
       )}

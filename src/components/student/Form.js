@@ -27,6 +27,15 @@ export default function Form(props) {
           sex: formInfo.sex === "Nam" ? true : false,
         });
         break;
+      case "UPDATE":
+        props.handleUpdate({
+          ...formInfo,
+          sex: formInfo.sex === "Nam" ? true : false,
+        });
+        break;
+      case "CANCEL":
+        props.handleClose();
+        break;
       default:
         break;
     }
@@ -54,6 +63,9 @@ export default function Form(props) {
                   className="form-control"
                   value={formInfo.id}
                   onChange={(e) => handleChangeInput(e)}
+                  disabled={
+                    props.action === "UPDATE" || props.action === "CANCEL"
+                  }
                 />
               </div>
             </div>
@@ -66,6 +78,7 @@ export default function Form(props) {
                   value={formInfo.name}
                   className="form-control"
                   onChange={(e) => handleChangeInput(e)}
+                  disabled={props.action === "CANCEL"}
                 />
               </div>
             </div>
@@ -78,6 +91,7 @@ export default function Form(props) {
                   value={formInfo.age}
                   className="form-control"
                   onChange={(e) => handleChangeInput(e)}
+                  disabled={props.action === "CANCEL"}
                 />
               </div>
             </div>
@@ -89,6 +103,7 @@ export default function Form(props) {
                   name="sex"
                   value={formInfo.sex}
                   onChange={(e) => handleChangeInput(e)}
+                  disabled={props.action === "CANCEL"}
                 >
                   <option value={"Nam"}>Nam</option>
                   <option value={"Nu"}>Nữ</option>
@@ -104,6 +119,7 @@ export default function Form(props) {
                   value={formInfo.birthday}
                   placeholder="dd/mm/yyyy"
                   onChange={(e) => handleChangeInput(e)}
+                  disabled={props.action === "CANCEL"}
                 />
               </div>
             </div>
@@ -115,6 +131,7 @@ export default function Form(props) {
                   name="place"
                   value={formInfo.place}
                   onChange={(e) => handleChangeInput(e)}
+                  disabled={props.action === "CANCEL"}
                 >
                   <option value={"HN"}>Hà Nội</option>
                   <option value={"HCM"}>TP. Hồ Chí Minh</option>
@@ -131,6 +148,7 @@ export default function Form(props) {
                   name="address"
                   value={formInfo.address}
                   onChange={(e) => handleChangeInput(e)}
+                  disabled={props.action === "CANCEL"}
                 />
               </div>
             </div>
