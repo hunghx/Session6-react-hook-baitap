@@ -12,33 +12,38 @@ export default function StudentManagement() {
   const [show, setShow] = useState(false);
   const [action, setAction] = useState("");
   const [studentInfo, setStudentInfo] = useState();
-
+  // XỬ lí thêm mới
   const handleAdd = (studentNew) => {
     let newList = [...list, studentNew];
     localStorage.setItem("list-student", JSON.stringify(newList));
     setList(newList);
     setShow(false);
   };
+  // XỬ lí xoá
   const handleDelete = (idDel) => {
     let afterDelList = list.filter((stu) => stu.id !== idDel);
     localStorage.setItem("list-student", JSON.stringify(afterDelList));
     setList(afterDelList);
   };
+  //hiển thị học sinh cần sửa ra forrm
   const handleEdit = (stuEdit) => {
     setShow(true);
     setStudentInfo({ ...stuEdit });
     setAction("UPDATE");
   };
+
+  // HIển thị thông tin chi tiết ra form
   const handleDetail = (stuDetail) => {
     setShow(true);
     setStudentInfo({ ...stuDetail });
     setAction("CANCEL");
   };
+  // Đóng forrm
   const handleClose = () => {
     setShow(false);
   };
+  // Xử lí update
   const handleUpdate = (stuUp) => {
-    // Xử lí update
     let updateList = list.map((stu) => (stu.id === stuUp.id ? stuUp : stu));
     setList(updateList);
     localStorage.setItem("list-student", JSON.stringify(updateList));
